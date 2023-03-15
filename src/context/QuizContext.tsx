@@ -11,12 +11,15 @@ interface QuizContextProps {
     totalScore: number;
     nextQ: () => void;
     prevQ: () => void;
+    goToQ: (index: number) => void;
     updateAnswerList: (answer: string, index: number) => void;
     isQuizCompleted: boolean;
     categories: [] | any;
     chosenCategory: number;
     isCategorySelected: boolean;
     selectCategory: (id: number) => void;
+    viewResultBoolean: boolean;
+    viewResult: () => void;
 }
 
 const QuizContext = createContext<QuizContextProps>({
@@ -30,12 +33,15 @@ const QuizContext = createContext<QuizContextProps>({
     totalScore: 0,
     nextQ: () => {},
     prevQ: () => {},
+    goToQ: (index: number) => {},
     updateAnswerList: (answer: string, index: number) => {},
     isQuizCompleted: false,
     categories: [],
     chosenCategory: 9,
     isCategorySelected: false,
     selectCategory: (id: number) => {},
+    viewResultBoolean: false,
+    viewResult: () => {},
 });
 
 const reducer = (state: any, action: any) => {
@@ -84,6 +90,7 @@ const reducer = (state: any, action: any) => {
                     ...state,
                     isQuizCompleted: true,
                     totalScore: score
+                    
                 }
             }
         
@@ -128,6 +135,17 @@ const reducer = (state: any, action: any) => {
                 chosenCategory: action.payload,
                 isCategorySelected: true,
             };
+        case 'GO_TO_Q':
+            return {
+                ...state,
+                currentSlide: action.payload,
+            };
+        case 'VIEW_RESULT':
+            return {
+                ...state,
+                viewResultBoolean: true,
+                currentSlide: 1,
+            };
         
         default:
             return state;
@@ -145,6 +163,7 @@ const QuizContextProvider = ({ children }: any) => {
         isQuizCompleted: false,
         chosenCategory: 9,
         isCategorySelected: false,
+        viewResultBoolean: false,
     });
     
     const fetchQuizData = async () => {
@@ -203,13 +222,22 @@ const QuizContextProvider = ({ children }: any) => {
         console.log(state.answerList)
     };
 
+    const goToQ = (index: number) => {
+        dispatch({ type: 'GO_TO_Q', payload: index });
+    };
+
     const updateAnswerList = (answer: string, index: number) => {
         // update answerList with answer and index
         dispatch({ type: 'UPDATE_ANSWER_LIST', payload: {answer, index} });
         
     }
+
+    const viewResult = () => {
+        dispatch({ type: 'VIEW_RESULT' });
+    }
+
     return (
-        <QuizContext.Provider value={{ ...state, fetchQuizData, nextQ, prevQ, updateAnswerList, fetchCategories, selectCategory }}>
+        <QuizContext.Provider value={{ ...state, fetchQuizData, nextQ, prevQ, updateAnswerList, fetchCategories, selectCategory, goToQ, viewResult }}>
             {children}
         </QuizContext.Provider>
     );
