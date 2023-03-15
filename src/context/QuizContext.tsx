@@ -1,10 +1,11 @@
-import { createContext, useReducer, useEffect }  from 'react';
+import { createContext, useReducer, useEffect, useContext }  from 'react';
 
 interface QuizContextProps {
     quizList: [] | any;
     loading: boolean;
     error: boolean;
     fetchQuizData: () => void;
+    fetchCategories: () => void;
     currentSlide: number;
     answerList: Array<string>;
     totalScore: number;
@@ -12,6 +13,10 @@ interface QuizContextProps {
     prevQ: () => void;
     updateAnswerList: (answer: string, index: number) => void;
     isQuizCompleted: boolean;
+    categories: [] | any;
+    chosenCategory: number;
+    isCategorySelected: boolean;
+    selectCategory: (id: number) => void;
 }
 
 const QuizContext = createContext<QuizContextProps>({
@@ -19,6 +24,7 @@ const QuizContext = createContext<QuizContextProps>({
     loading: false,
     error: false,
     fetchQuizData: () => {},
+    fetchCategories: () => {},
     currentSlide: 1,
     answerList:  new Array(10).fill("0"),
     totalScore: 0,
@@ -26,6 +32,10 @@ const QuizContext = createContext<QuizContextProps>({
     prevQ: () => {},
     updateAnswerList: (answer: string, index: number) => {},
     isQuizCompleted: false,
+    categories: [],
+    chosenCategory: 9,
+    isCategorySelected: false,
+    selectCategory: (id: number) => {},
 });
 
 const reducer = (state: any, action: any) => {
@@ -105,15 +115,26 @@ const reducer = (state: any, action: any) => {
                 })
 
             }
-
+        case 'FETCH_CATEGORIES':
+            return {
+                ...state,
+                categories: action.payload,
+                loading: false,
+                error: false,
+            };
+        case 'SELECT_CATEGORY':
+            return {
+                ...state,
+                chosenCategory: action.payload,
+                isCategorySelected: true,
+            };
         
         default:
             return state;
     }
 };
-
 const QuizContextProvider = ({ children }: any) => {
-
+    
     const [state, dispatch] = useReducer(reducer, {
         quizList: [],
         loading: false,
@@ -122,12 +143,19 @@ const QuizContextProvider = ({ children }: any) => {
         answerList: new Array(10).fill("0"),
         totalScore: 0,
         isQuizCompleted: false,
+        chosenCategory: 9,
+        isCategorySelected: false,
     });
     
     const fetchQuizData = async () => {
+        
         dispatch({ type: 'LOADING' });
+        
         try {
-            const response = await fetch('https://opentdb.com/api.php?amount=10');
+            // fetch response from API for 10 questions according to category
+            // convert state.chosenCategory to string to use in fetch
+            console.log("Fetching this Category",state.chosenCategory)
+            const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${state.chosenCategory}`);
             const data = await response.json();
             const parsedData= data.results.map((quiz: any) => {
                 const {category, question, correct_answer, incorrect_answers} = quiz
@@ -140,8 +168,28 @@ const QuizContextProvider = ({ children }: any) => {
             dispatch({ type: 'FETCH_QUIZ_DATA', payload: parsedData });
         } catch (error) {
             dispatch({ type: 'ERROR' });
+            console.log("error", error)
         }
     };
+
+    const fetchCategories = async () => {
+        dispatch({ type: 'LOADING' });
+        try {
+            const response = await fetch('https://opentdb.com/api_category.php');
+            const data = await response.json();
+            console.log("Categories", data.trivia_categories)
+            dispatch({ type: 'FETCH_CATEGORIES', payload: data.trivia_categories });
+        } catch (error) {
+            dispatch({ type: 'ERROR' });
+        }
+    };
+
+    const selectCategory = (id: number) => {
+        dispatch({ type: 'SELECT_CATEGORY', payload: id });
+        state.chosenCategory = id
+        console.log(id)
+    };
+
 
     const nextQ = () => {
         dispatch({ type: 'NEXT_Q' });
@@ -161,7 +209,7 @@ const QuizContextProvider = ({ children }: any) => {
         
     }
     return (
-        <QuizContext.Provider value={{ ...state, fetchQuizData, nextQ, prevQ, updateAnswerList }}>
+        <QuizContext.Provider value={{ ...state, fetchQuizData, nextQ, prevQ, updateAnswerList, fetchCategories, selectCategory }}>
             {children}
         </QuizContext.Provider>
     );
