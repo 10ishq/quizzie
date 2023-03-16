@@ -11,13 +11,9 @@ const Navbar = () => {
     <div className="">
       <nav className="relative px-2 sm:px-4 py-1  bg-gray-900 shadow-2xl">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
-          <a href="/" className="flex items-center">
-            <img
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              className="h-6 mr-3 sm:h-9"
-              alt="Logo"
-            />
-            <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
+          <a href="/" className="flex items-center justify-center">
+            
+            <span className="self-center text-blue-200 font-bold text-2xl border-2 p-1 rounded-lg  whitespace-nowrap">
               Quizzie
             </span>
           </a>
@@ -43,9 +39,9 @@ const Navbar = () => {
               ></path>
             </svg>
           </button>
-          <div className={` w-full md:block md:w-auto ${isOpen ? "" : "hidden"}`} id="navbar-default">
+          <div className={` w-full text-center md:block md:w-auto ${isOpen ? "" : "hidden"}`} id="navbar-default">
             <ul className="flex flex-col md:mr-2 p-4 mt-4 border rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0  ">
-              <li>
+              <li className="border md:border-0 rounded-lg" onClick={() => {setIsOpen(!isOpen)}}>
                 <Link
                   to="/"
                   className="block text-lg  py-2 pl-3 pr-4 transition-all duration-200  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
@@ -54,7 +50,7 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li>
+              <li className="border md:border-0 rounded-lg" onClick={() => {setIsOpen(!isOpen)}}>
                 <Link
                   to="/about"
                   className="block text-lg  py-2 pl-3 pr-4 transition-all duration-200  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"

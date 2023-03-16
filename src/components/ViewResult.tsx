@@ -9,15 +9,21 @@ interface ViewResultProps {
 }
 
 const ViewResult = ({ question, answer, options, q_no }: ViewResultProps) => {
-  const { nextQ, prevQ, updateAnswerList, goToQ, answerList, viewResultBoolean, quizList } =
-    useContext(QuizContext);
+  const {
+    nextQ,
+    prevQ,
+    updateAnswerList,
+    goToQ,
+    answerList,
+    viewResultBoolean,
+    quizList,
+  } = useContext(QuizContext);
 
   function decodeString(str: string) {
     const textArea = document.createElement("textarea");
     textArea.innerHTML = str;
     return textArea.value;
   }
-
 
   return (
     <div className=" relative h-screen pb-40 flex px-5 flex-col justify-center items-center bg-gray-900 shadow-2xl text-white">
@@ -27,13 +33,20 @@ const ViewResult = ({ question, answer, options, q_no }: ViewResultProps) => {
           {Array(10)
             .fill("")
             .map((_, index) => {
-              const color = 
-                answerList[index] !== quizList[index].correct_answer ? "bg-red-500" : "bg-green-500";
+              const color =
+                answerList[index] !== quizList[index].correct_answer
+                  ? "bg-red-500"
+                  : "bg-green-500";
+              const selectedOptionColor =
+                index + 1 === q_no
+                  ? " border-solid border-8 border-sky-500 "
+                  : " ";
               return (
                 <button
                   onClick={() => goToQ(index + 1)}
                   className={
                     color +
+                    selectedOptionColor +
                     ` flex mx-1 w-10 h-10 md:mx-1.5 justify-center items-center md:w-20 md:h-20 text-black rounded-lg shadow-sm shadow-slate-300 hover:shadow-2xl hover:shadow-slate-200 hover:scale-110 transition-all duration-200 active:scale-105  cursor-pointer`
                   }
                 >
@@ -50,17 +63,21 @@ const ViewResult = ({ question, answer, options, q_no }: ViewResultProps) => {
 
       <div className="flex flex-col mr-10 max-w-5 justify-center items-center">
         {options?.map((option: string) => {
-            const color = 
-            option===quizList[q_no-1].correct_answer ? "bg-green-500" : "bg-red-500";
-            const selectedOptionColor = 
-            option===answerList[q_no-1] ? " bg-blue-500 " : " ";
+          const color =
+            option === quizList[q_no - 1].correct_answer
+              ? "bg-green-500"
+              : "bg-red-500";
+          const selectedOptionColor =
+            option === answerList[q_no - 1] ? " bg-blue-500 " : " ";
           return (
             <div className=" z-20 justify-center w-[400px] items-center mb-5">
               <button
-                onClick={() => {
-                  
-                }}
-                className={selectedOptionColor + color +` text-white w-full mx-5 transition-all duration-200 font-medium rounded-lg text-xl md:text-2xl px-5 py-2.5 mr-2 mb-2 `}
+                onClick={() => {}}
+                className={
+                  selectedOptionColor +
+                  color +
+                  ` text-white w-full mx-5 transition-all duration-200 font-medium rounded-lg text-xl md:text-2xl px-5 py-2.5 mr-2 mb-2 `
+                }
               >
                 {decodeString(option)}
               </button>
@@ -76,12 +93,14 @@ const ViewResult = ({ question, answer, options, q_no }: ViewResultProps) => {
           >
             Prev
           </button>
-          {!(q_no===10) && <button
-            className=" h-[70px] w-[150px] md:h-[100px] text-white   hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-2xl md:text-3xl px-5 py-2.5 mr-2 mb-2 bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
-            onClick={ nextQ}
-          >
-            Next
-          </button>}
+          {!(q_no === 10) && (
+            <button
+              className=" h-[70px] w-[150px] md:h-[100px] text-white   hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-2xl md:text-3xl px-5 py-2.5 mr-2 mb-2 bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+              onClick={nextQ}
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>
