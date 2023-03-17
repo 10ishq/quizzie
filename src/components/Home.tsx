@@ -45,7 +45,6 @@ const Home = () => {
       {/* display loading if loading true and error if error true otherwise display QuizCard with detals of quizList element with index = currentSlide-1 */}
       {loading && (
         <div>
-          
           <PacmanLoader
             color={color}
             loading={loading}
@@ -54,7 +53,9 @@ const Home = () => {
             aria-label="Loading Spinner"
             data-testid="loader"
           />
-          <h1 className="text-3xl font-bold w-full text-center my-3 py-3">Loading...</h1>
+          <h1 className="text-3xl font-bold w-full text-center my-3 py-3">
+            Loading...
+          </h1>
         </div>
       )}
       {error && (

@@ -81,7 +81,7 @@ const QuizCard = ({ question, answer, options, q_no }: QuizCardProps) => {
             className=" h-[70px] w-[150px] md:h-[100px] text-white   hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-2xl md:text-3xl px-5 py-2.5 mr-2 mb-2 bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
             onClick={nextQ}
           >
-            Next
+            {q_no === 10 ? "Submit" : "Next"}
           </button>
         </div>
       </div>
