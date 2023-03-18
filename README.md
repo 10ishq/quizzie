@@ -1,46 +1,64 @@
-# Getting Started with Create React App
+# Quizzie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple quiz app built with React. It utilizes the Open Trivia API to generate random questions based on a selected category.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Table of Contents:
+* Installation
+* Usage
+* Technologies Used
+* Contributing
+* Lisence
 
-### `npm start`
+## Installation
+To run this project, you will need to have Node.js installed on your machine.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone this repository to your local machine using the command below.
+`git clone https://github.com/10ishq/quizzie.git`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Navigate to the project directory.
+`cd quizzie`
 
-### `npm test`
+3. Install the required dependencies with the following command.
+`npm install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Start the development server.
+`npm start`
 
-### `npm run build`
+5. Open http://localhost:3000 to view the app in your browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Selecting a Category
 
-### `npm run eject`
+Upon loading the app, the user will be prompted to select a category for the quiz. Clicking on a category will take the user to the first question in the quiz.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Answering Questions
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The quiz consists of 10 multiple choice questions. The user can select an answer by clicking on one of the provided options. Once an answer has been selected, the user can move on to the next question by clicking the "Next" button.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Viewing Results
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After answering all 10 questions, the user will be taken to a results page that displays their score out of 10. The user can then click the "Reset" button to restart the quiz.
 
-## Learn More
+## Technologies Used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* React
+* TypeScript
+* React Router
+* React Context API
+* Open Trivia API
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
+
+Contributions are welcome! If you would like to contribute to the project, please follow the steps below.
+
+* Fork the project.
+* Create a new branch.
+* Make your changes and commit them.
+* Push your changes to your fork.
+* Submit a pull request.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
