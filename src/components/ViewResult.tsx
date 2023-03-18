@@ -8,14 +8,12 @@ interface ViewResultProps {
   q_no: number | null;
 }
 
-const ViewResult = ({ question, answer, options, q_no }: ViewResultProps) => {
+const ViewResult = ({ question, options, q_no }: ViewResultProps) => {
   const {
     nextQ,
     prevQ,
-    updateAnswerList,
     goToQ,
     answerList,
-    viewResultBoolean,
     quizList,
   } = useContext(QuizContext);
 

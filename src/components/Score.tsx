@@ -7,7 +7,7 @@ import {
 import Confetti from "react-confetti";
 
 const Score = () => {
-  const { totalScore, viewResult, viewResultBoolean } = useContext(QuizContext);
+  const { totalScore, viewResult } = useContext(QuizContext);
   const [width, height] = useWindowSize();
   return (
     <div className="flex h-full pb-60 w-full justify-center items-center bg-gray-900 shadow-2xl text-white">

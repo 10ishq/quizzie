@@ -20,18 +20,13 @@ const Home = () => {
     viewResultBoolean,
     loading,
     error,
-    fetchQuizData,
-    answerList,
     currentSlide,
-    nextQ,
-    prevQ,
     isQuizCompleted,
     fetchCategories,
     categories,
-    chosenCategory,
   } = useContext(QuizContext);
   // console.log(quizList)
-  let [color, setColor] = useState("#F6E25F");
+  let [color] = useState("#F6E25F");
   useEffect(() => {
     // fetchQuizData()
     console.log("Fetching Categories");

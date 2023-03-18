@@ -7,7 +7,7 @@ interface QuizCardProps {
   options: string[] | null;
   q_no: number;
 }
-const QuizCard = ({ question, answer, options, q_no }: QuizCardProps) => {
+const QuizCard = ({ question, options, q_no }: QuizCardProps) => {
   const { nextQ, prevQ, updateAnswerList, goToQ, answerList } =
     useContext(QuizContext);
 
