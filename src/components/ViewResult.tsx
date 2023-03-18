@@ -9,13 +9,7 @@ interface ViewResultProps {
 }
 
 const ViewResult = ({ question, options, q_no }: ViewResultProps) => {
-  const {
-    nextQ,
-    prevQ,
-    goToQ,
-    answerList,
-    quizList,
-  } = useContext(QuizContext);
+  const { nextQ, prevQ, goToQ, answerList, quizList } = useContext(QuizContext);
 
   function decodeString(str: string) {
     const textArea = document.createElement("textarea");
@@ -24,10 +18,10 @@ const ViewResult = ({ question, options, q_no }: ViewResultProps) => {
   }
 
   return (
-    <div className=" relative h-screen pb-40 flex px-5 flex-col justify-center items-center bg-gray-900 shadow-2xl text-white">
+    <div className=" relative w-full  h-full pb-40 flex px-5 flex-col justify-center items-center bg-gray-900 shadow-2xl text-white">
       {/* render 10 elements each showing number as text */}
-      <div className="absolute top-[10px] md:top-[-10px]">
-        <div className="flex justify-center w-full  pb-10">
+      <div className="relative w-[99%] md:absolute md:top-[-10px] ">
+        <div className="flex justify-center items-center w-full ">
           {Array(10)
             .fill("")
             .map((_, index) => {
@@ -54,12 +48,12 @@ const ViewResult = ({ question, options, q_no }: ViewResultProps) => {
             })}
         </div>
       </div>
-      <h1 className=" flex text-start text-2xl md:text-4xl mt-32  pb-5 font-bold  w-full mx-3 px-2 border-solid border-2 border-green-500 p-3 mb-5 rounded-lg">
+      <h1 className=" flex w-[99%] text-start text-2xl md:text-4xl mt-32  pb-5 font-bold mx-3 px-3 border-solid border-2 border-green-500 p-3 mb-5 rounded-lg">
         Q{q_no}. {decodeString(question!)}
       </h1>
       {/* <h1 className="text-2xl font-bold">{q_no}</h1>  */}
 
-      <div className="flex flex-col mr-10 max-w-5 justify-center items-center">
+      <div className="flex flex-col max-w-5 justify-center items-center">
         {options?.map((option: string) => {
           const color =
             option === quizList[q_no! - 1]!.correct_answer
@@ -68,13 +62,13 @@ const ViewResult = ({ question, options, q_no }: ViewResultProps) => {
           const selectedOptionColor =
             option === answerList[q_no! - 1] ? " bg-blue-500 " : " ";
           return (
-            <div className=" z-20 justify-center w-[400px] items-center mb-5">
+            <div className=" flex z-20 justify-center w-[400px] items-center mb-5">
               <button
                 onClick={() => {}}
                 className={
                   selectedOptionColor +
                   color +
-                  ` text-white w-full mx-5 transition-all duration-200 font-medium rounded-lg text-xl md:text-2xl px-5 py-2.5 mr-2 mb-2 `
+                  ` text-white w-[90%] md:w-full transition-all duration-200 font-medium rounded-lg text-xl md:text-2xl px-5 py-2.5 mr-2 mb-2 `
                 }
               >
                 {decodeString(option)}

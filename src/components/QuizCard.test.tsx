@@ -4,12 +4,6 @@ import { render } from "@testing-library/react";
 import QuizCard from "./QuizCard";
 
 test("QuizCard component renders correctly", () => {
-  interface QuizCardProps {
-    question: string;
-    answer: string;
-    options: string[];
-    q_no: number;
-  }
   const { getByText } = render(
     <QuizCard
       question={"TestQuestion"}
