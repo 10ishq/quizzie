@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { QuizContext } from "../context/QuizContext";
 
 interface ViewResultProps {
-  question: string;
-  answer: string;
-  options: string[];
-  q_no: number;
+  question: string | null;
+  answer: string | null;
+  options: string[] | null;
+  q_no: number | null;
 }
 
 const ViewResult = ({ question, answer, options, q_no }: ViewResultProps) => {
@@ -57,18 +57,18 @@ const ViewResult = ({ question, answer, options, q_no }: ViewResultProps) => {
         </div>
       </div>
       <h1 className=" flex text-start text-2xl md:text-4xl mt-32  pb-5 font-bold  w-full mx-3 px-2 border-solid border-2 border-green-500 p-3 mb-5 rounded-lg">
-        Q{q_no}. {decodeString(question)}
+        Q{q_no}. {decodeString(question!)}
       </h1>
       {/* <h1 className="text-2xl font-bold">{q_no}</h1>  */}
 
       <div className="flex flex-col mr-10 max-w-5 justify-center items-center">
         {options?.map((option: string) => {
           const color =
-            option === quizList[q_no - 1].correct_answer
+            option === quizList[q_no! - 1]!.correct_answer
               ? "bg-green-500"
               : "bg-red-500";
           const selectedOptionColor =
-            option === answerList[q_no - 1] ? " bg-blue-500 " : " ";
+            option === answerList[q_no! - 1] ? " bg-blue-500 " : " ";
           return (
             <div className=" z-20 justify-center w-[400px] items-center mb-5">
               <button

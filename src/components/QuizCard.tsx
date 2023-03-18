@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { QuizContext } from "../context/QuizContext";
 
 interface QuizCardProps {
-  question: string;
-  answer: string;
-  options: string[];
+  question: string | null;
+  answer: string | null;
+  options: string[] | null;
   q_no: number;
 }
 const QuizCard = ({ question, answer, options, q_no }: QuizCardProps) => {
@@ -17,7 +17,7 @@ const QuizCard = ({ question, answer, options, q_no }: QuizCardProps) => {
     return textArea.value;
   }
 
-  const decodedQuestion = decodeString(question);
+  const decodedQuestion = decodeString(question!);
 
   return (
     <div className=" relative h-screen pb-40 flex px-5 flex-col justify-center items-center bg-gray-900 shadow-2xl text-white">

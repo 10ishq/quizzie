@@ -1,7 +1,15 @@
 import { createContext, useReducer } from "react";
 
 interface QuizContextTypes {
-  quizList: [] | any;
+  quizList: [
+    {
+      category: string | null;
+      correct_answer: string | null;
+      incorrect_answers: string[] | null;
+      question: string | null;
+      options: string[] | null;
+    }
+  ];
   loading: boolean;
   error: boolean;
   fetchQuizData: () => void;
@@ -23,7 +31,15 @@ interface QuizContextTypes {
 }
 
 const QuizContext = createContext<QuizContextTypes>({
-  quizList: [],
+  quizList: [
+    {
+      category: null,
+      correct_answer: null,
+      incorrect_answers: null,
+      question: null,
+      options: null,
+    },
+  ],
   loading: false,
   error: false,
   fetchQuizData: () => {},

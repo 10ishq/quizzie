@@ -3,8 +3,6 @@ import { QuizContext } from "../context/QuizContext";
 import { Link } from "react-router-dom";
 import {
   useWindowSize,
-  useWindowWidth,
-  useWindowHeight,
 } from "@react-hook/window-size";
 import Confetti from "react-confetti";
 
