@@ -10,7 +10,7 @@ const About = () => {
               Quizzie
             </span>
           </Link>
-          , built by Tanishq Jaiswal for iNeuron internship, a fun way to challenge yourself, kill
+          , built by Tanishq Jaiswal, a fun way to challenge yourself, kill
           time, and have fun! <br /> <br />I built this app as a personal
           challenge to myself, and to provide others with a simple and enjoyable
           game to play. <br />
