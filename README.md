@@ -5,9 +5,13 @@ This project is a simple quiz app built with React. It utilizes the Open Trivia 
 Demo: [Play Quizzie](http://quizziegame.web.app/)
 
 * Select category and play!
+
+
 ![ezgif-4-36776d9c22](https://user-images.githubusercontent.com/30299564/229290653-0170b365-d070-4c18-9db9-e3ea3b63e029.gif)
 
 * Celebrate with Confetti!
+
+
 ![ezgif-4-0e85362090](https://user-images.githubusercontent.com/30299564/229290658-7493ab1e-38d7-42d7-8d79-8f5074513495.gif)
 
 
