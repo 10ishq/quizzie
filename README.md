@@ -26,22 +26,28 @@ Demo: [Play Quizzie](http://quizziegame.web.app/)
 To run this project, you will need to have Node.js installed on your machine.
 
 1. Clone this repository to your local machine using the command below.
+
 `git clone https://github.com/10ishq/quizzie.git`
 
 2. Navigate to the project directory.
+
 `cd quizzie`
 
 3. Install the required dependencies with the following command.
+
 `npm install`
 
 4. Install Tailwind 
+
 `npm install -D tailwindcss`
+
 `npx tailwindcss init`
 
 * Configure your template paths
 Add the paths to all of your template files in your `tailwind.config.js` file
 
-`/** @type {import('tailwindcss').Config} */
+```
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -50,18 +56,22 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}`
+}
+```
 
 * Add the Tailwind directives to your CSS
-Add the @tailwind directives for each of Tailwind’s layers to your `./src/index.css` file.
-`@tailwind base;
-@tailwind components;
-@tailwind utilities;`
 
-4. Start the development server.
+Add the @tailwind directives for each of Tailwind’s layers to your `./src/index.css` file.
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+5. Start the development server.
 `npm start`
 
-5. Open http://localhost:3000 to view the app in your browser.
+6. Open http://localhost:3000 to view the app in your browser.
 
 
 ## Usage
